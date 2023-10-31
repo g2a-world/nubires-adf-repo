@@ -27,15 +27,7 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_sql_connection'"
 		},
-		"ls_temp_adls_connect_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'ls_temp_adls_connect'"
-		},
 		"ls_adls_formula1dlg2a_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://formula1dlg2a.dfs.core.windows.net/"
-		},
-		"ls_temp_adls_connect_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://formula1dlg2a.dfs.core.windows.net/"
 		},
@@ -809,23 +801,6 @@
 				"type": "AzureSqlDatabase",
 				"typeProperties": {
 					"connectionString": "[parameters('ls_sql_connection_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ls_temp_adls_connect')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('ls_temp_adls_connect_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('ls_temp_adls_connect_accountKey')]"
-					}
 				}
 			},
 			"dependsOn": []
