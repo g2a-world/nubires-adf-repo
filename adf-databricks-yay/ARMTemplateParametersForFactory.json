@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-databricks-yay"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"ls_adls_formula1dlg2a_accountKey": {
+			"value": ""
+		},
+		"ls_psudo_server_sql_connections_connectionString": {
+			"value": ""
+		},
+		"ls_snowflake_connection_connectionString": {
+			"value": ""
+		},
+		"ls_sql_connection_connectionString": {
+			"value": ""
+		},
+		"ls_adls_formula1dlg2a_properties_typeProperties_url": {
+			"value": "https://formula1dlg2a.dfs.core.windows.net/"
+		},
+		"ls_wrs_databricks_existing_cluster_properties_typeProperties_existingClusterId": {
+			"value": "0827-035613-8vhsz84f"
+		}
+	}
+}
