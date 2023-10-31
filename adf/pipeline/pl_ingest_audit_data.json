@@ -1,0 +1,30 @@
+{
+	"name": "pl_ingest_audit_data",
+	"properties": {
+		"activities": [
+			{
+				"name": "ingest student data",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Upsert-Demo/ingest/capture audit logs"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_wrs_databricks_existing_cluster",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-10-08T03:12:45Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

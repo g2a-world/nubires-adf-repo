@@ -1,0 +1,17 @@
+{
+	"name": "ds_snowflake_datasets",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_snowflake_connection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "TPCH_SF100",
+			"table": "ORDERS"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

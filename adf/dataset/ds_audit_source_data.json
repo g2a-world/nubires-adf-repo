@@ -1,0 +1,13 @@
+{
+	"name": "ds_audit_source_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_psudo_server_sql_connections",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

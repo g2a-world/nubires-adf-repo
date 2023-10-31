@@ -1,0 +1,24 @@
+{
+	"name": "ds_copy_employee_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_formula1dlg2a",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "employee_list_1_day_1.csv",
+				"fileSystem": "employee"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,28 @@
+{
+	"name": "ds_adf_audit_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_formula1dlg2a",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('logs_', utcnow())",
+					"type": "Expression"
+				},
+				"folderPath": "all_data_logs",
+				"fileSystem": "adf-logs"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
