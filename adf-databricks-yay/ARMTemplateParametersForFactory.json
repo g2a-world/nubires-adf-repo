@@ -20,7 +20,13 @@
 		"ls_sql_connection_connectionString": {
 			"value": ""
 		},
+		"ls_temp_adls_connect_accountKey": {
+			"value": ""
+		},
 		"ls_adls_formula1dlg2a_properties_typeProperties_url": {
+			"value": "https://formula1dlg2a.dfs.core.windows.net/"
+		},
+		"ls_temp_adls_connect_properties_typeProperties_url": {
 			"value": "https://formula1dlg2a.dfs.core.windows.net/"
 		},
 		"ls_wrs_databricks_existing_cluster_properties_typeProperties_existingClusterId": {
