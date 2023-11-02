@@ -15,10 +15,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_adls_formula1dlg2a'"
 		},
-		"ls_adls_gen2_for_delete_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'ls_adls_gen2_for_delete'"
-		},
 		"ls_psudo_server_sql_connections_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_psudo_server_sql_connections'"
@@ -32,10 +28,6 @@
 			"metadata": "Secure string for 'connectionString' of 'ls_sql_connection'"
 		},
 		"ls_adls_formula1dlg2a_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://formula1dlg2a.dfs.core.windows.net/"
-		},
-		"ls_adls_gen2_for_delete_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://formula1dlg2a.dfs.core.windows.net/"
 		},
@@ -96,23 +88,6 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('ls_adls_formula1dlg2a_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ls_adls_gen2_for_delete')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('ls_adls_gen2_for_delete_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('ls_adls_gen2_for_delete_accountKey')]"
 					}
 				}
 			},
@@ -415,37 +390,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_demo_circuit_data')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_adls_gen2_for_delete",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": {
-							"value": "@concat('circuits_', utcnow())",
-							"type": "Expression"
-						},
-						"fileSystem": "demo"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_adls_gen2_for_delete')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ds_dest_Binary1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -497,31 +441,63 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_raw_circuit_data')]",
+			"name": "[concat(parameters('factoryName'), '/ds_read_data_on_success')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "ls_adls_gen2_for_delete",
+					"referenceName": "ls_sql_connection",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "circuits.csv",
-						"fileSystem": "raw"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_adls_gen2_for_delete')]"
+				"[concat(variables('factoryId'), '/linkedServices/ls_sql_connection')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_snowflake_datasets')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_snowflake_connection",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SnowflakeTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "TPCH_SF100",
+					"table": "ORDERS"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_snowflake_connection')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_source_Binary1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_adls_formula1dlg2a",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_adls_formula1dlg2a')]"
 			]
 		}
 	]
