@@ -11,6 +11,9 @@
 		"ls_adls_formula1dlg2a_accountKey": {
 			"value": ""
 		},
+		"ls_adls_gen2_for_delete_accountKey": {
+			"value": ""
+		},
 		"ls_psudo_server_sql_connections_connectionString": {
 			"value": ""
 		},
@@ -21,6 +24,9 @@
 			"value": ""
 		},
 		"ls_adls_formula1dlg2a_properties_typeProperties_url": {
+			"value": "https://formula1dlg2a.dfs.core.windows.net/"
+		},
+		"ls_adls_gen2_for_delete_properties_typeProperties_url": {
 			"value": "https://formula1dlg2a.dfs.core.windows.net/"
 		},
 		"ls_wrs_databricks_existing_cluster_properties_typeProperties_existingClusterId": {

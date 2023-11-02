@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_adls_formula1dlg2a'"
 		},
+		"ls_adls_gen2_for_delete_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_gen2_for_delete'"
+		},
 		"ls_psudo_server_sql_connections_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_psudo_server_sql_connections'"
@@ -28,6 +32,10 @@
 			"metadata": "Secure string for 'connectionString' of 'ls_sql_connection'"
 		},
 		"ls_adls_formula1dlg2a_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://formula1dlg2a.dfs.core.windows.net/"
+		},
+		"ls_adls_gen2_for_delete_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://formula1dlg2a.dfs.core.windows.net/"
 		},
@@ -68,6 +76,9 @@
 					"ls_adls_formula1dlg2a_accountKey": {
 						"value": "[parameters('ls_adls_formula1dlg2a_accountKey')]"
 					},
+					"ls_adls_gen2_for_delete_accountKey": {
+						"value": "[parameters('ls_adls_gen2_for_delete_accountKey')]"
+					},
 					"ls_psudo_server_sql_connections_connectionString": {
 						"value": "[parameters('ls_psudo_server_sql_connections_connectionString')]"
 					},
@@ -79,6 +90,9 @@
 					},
 					"ls_adls_formula1dlg2a_properties_typeProperties_url": {
 						"value": "[parameters('ls_adls_formula1dlg2a_properties_typeProperties_url')]"
+					},
+					"ls_adls_gen2_for_delete_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_gen2_for_delete_properties_typeProperties_url')]"
 					},
 					"ls_wrs_databricks_existing_cluster_properties_typeProperties_existingClusterId": {
 						"value": "[parameters('ls_wrs_databricks_existing_cluster_properties_typeProperties_existingClusterId')]"
