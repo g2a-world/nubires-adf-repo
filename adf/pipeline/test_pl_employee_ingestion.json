@@ -1,0 +1,131 @@
+{
+	"name": "test_pl_employee_ingestion",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_copy_employee_data",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_employee_destination",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Log on Success",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy Data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT\n    '@{pipeline().DataFactory}' as DataFactoryName,\n    '@{pipeline().Pipeline}' as PipelineName,\n    '@{pipeline().RunId}' as RunId,\n    'TotalSaleTable' as Source,\n    'TotalSale CSV File' as Destination,\n    '@{activity('Copy Data').output.dataRead}' as DataRead,\n    '@{activity('Copy Data').output.dataWritten}' as DataWritten,\n    '@{activity('Copy Data').output.copyDuration}' as CopyDuration,\n    '@{activity('Copy Data').output.filesRead}' as FilesRead,\n    '@{activity('Copy Data').output.filesWritten}' as FilesWritten,\n    '@{activity('Copy Data').output.sourcePeakConnections}' as SourcePeakConnections,\n    '@{activity('Copy Data').output.sinkPeakConnections}' as SinkPeakConnections,\n    '@{activity('Copy Data').output.durationInQueue}' as DurationInQueue\n",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_read_data_on_success",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_adf_audit_data",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-10-01T20:07:41Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
