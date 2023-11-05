@@ -579,24 +579,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_audit_source_data')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_psudo_server_sql_connections",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [],
-				"typeProperties": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_psudo_server_sql_connections')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ds_copy_employee_data')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
