@@ -1,0 +1,32 @@
+{
+	"name": "tr_ingest_student_data",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_ingest_student_trigger",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-11-07T12:39:00",
+				"timeZone": "Central Standard Time",
+				"schedule": {
+					"minutes": [
+						10
+					],
+					"hours": [
+						13
+					]
+				}
+			}
+		}
+	}
+}
