@@ -13,7 +13,7 @@
 				"timeZone": "Central Standard Time",
 				"schedule": {
 					"minutes": [
-						0
+						10
 					],
 					"hours": [
 						13
