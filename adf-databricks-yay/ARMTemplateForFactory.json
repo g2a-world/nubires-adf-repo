@@ -857,7 +857,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -876,10 +876,10 @@
 						"timeZone": "Central Standard Time",
 						"schedule": {
 							"minutes": [
-								35
+								16
 							],
 							"hours": [
-								13
+								15
 							]
 						}
 					}
