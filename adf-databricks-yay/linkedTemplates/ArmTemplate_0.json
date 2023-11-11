@@ -208,7 +208,7 @@
 							"notebookPath": "/Upsert-Demo/ingest/ingest-upsert-filtered",
 							"baseParameters": {
 								"run_date": {
-									"value": "@formatDateTime(pipeline().parameters.p_window_end_date, 'yyyy-MM-dd')",
+									"value": "@pipeline().parameters.p_window_end_date",
 									"type": "Expression"
 								}
 							}
@@ -224,7 +224,8 @@
 				},
 				"parameters": {
 					"p_window_end_date": {
-						"type": "string"
+						"type": "string",
+						"defaultValue": "1900-01-01"
 					}
 				},
 				"annotations": [],
