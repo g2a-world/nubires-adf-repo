@@ -1,0 +1,23 @@
+{
+	"name": "ds_unsubscribe_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_formula1dlg2a",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "unsubscibe.csv",
+				"fileSystem": "student"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
