@@ -1,0 +1,27 @@
+{
+	"name": "ds_destination_unsubscribe_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_formula1dlg2a",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('unsubscribe_data_', utcnow(), '.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "archive",
+				"fileSystem": "demo"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
