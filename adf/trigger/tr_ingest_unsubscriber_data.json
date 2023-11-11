@@ -1,0 +1,17 @@
+{
+	"name": "tr_ingest_unsubscriber_data",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/student/blobs/unsubscibe.csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/d4e27fa5-1b95-4504-8cb6-bb6d7deabbc0/resourceGroups/RG-Databricks-Course/providers/Microsoft.Storage/storageAccounts/formula1dlg2a",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
