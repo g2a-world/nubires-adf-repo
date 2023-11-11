@@ -35,6 +35,10 @@
 			"type": "string",
 			"defaultValue": "0827-035613-8vhsz84f"
 		},
+		"tr_ingest_unsubscriber_data_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/d4e27fa5-1b95-4504-8cb6-bb6d7deabbc0/resourceGroups/RG-Databricks-Course/providers/Microsoft.Storage/storageAccounts/formula1dlg2a"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -100,6 +104,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"tr_ingest_unsubscriber_data_properties_typeProperties_scope": {
+						"value": "[parameters('tr_ingest_unsubscriber_data_properties_typeProperties_scope')]"
 					}
 				}
 			},
