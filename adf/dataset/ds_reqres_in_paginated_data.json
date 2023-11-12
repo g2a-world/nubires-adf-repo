@@ -1,0 +1,23 @@
+{
+	"name": "ds_reqres_in_paginated_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_reqres_in",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"QueryParms": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "@dataset().QueryParms",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	}
+}
