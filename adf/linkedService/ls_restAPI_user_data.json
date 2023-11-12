@@ -1,0 +1,12 @@
+{
+	"name": "ls_restAPI_user_data",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "http://restapi.adequateshop.com",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
