@@ -1,0 +1,23 @@
+{
+	"name": "ds_user_data_destination_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_formula1dlg2a",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('user_data_',utcnow(),'.json')",
+					"type": "Expression"
+				},
+				"folderPath": "rest_api",
+				"fileSystem": "json-project"
+			}
+		},
+		"schema": {}
+	}
+}
