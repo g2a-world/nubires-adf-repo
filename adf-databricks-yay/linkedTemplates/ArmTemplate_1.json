@@ -17,6 +17,25 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/ds_snowflake_datasets')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_snowflake_connection",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SnowflakeTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "TPCH_SF100",
+					"table": "ORDERS"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ds_source_Binary1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -528,6 +547,7 @@
 				"lastPublishTime": "2023-10-02T03:02:42Z"
 			},
 			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_snowflake_datasets')]",
 				"[concat(variables('factoryId'), '/datasets/ds_source_Binary1')]"
 			]
 		},
