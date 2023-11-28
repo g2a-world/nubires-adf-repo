@@ -17,6 +17,32 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/ds_copy_employee_data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_adls_formula1dlg2a",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "employee_list_1_day_1.csv",
+						"fileSystem": "employee"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ds_dest_Binary1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -471,6 +497,7 @@
 				"lastPublishTime": "2023-10-01T20:07:41Z"
 			},
 			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_copy_employee_data')]",
 				"[concat(variables('factoryId'), '/datasets/ds_employee_destination')]",
 				"[concat(variables('factoryId'), '/datasets/ds_read_data_on_success')]"
 			]
@@ -644,6 +671,7 @@
 				"lastPublishTime": "2023-10-02T03:02:42Z"
 			},
 			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_copy_employee_data')]",
 				"[concat(variables('factoryId'), '/datasets/ds_employee_destination')]",
 				"[concat(variables('factoryId'), '/datasets/ds_snowflake_datasets')]",
 				"[concat(variables('factoryId'), '/datasets/ds_source_Binary1')]",
